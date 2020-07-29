@@ -44,6 +44,16 @@
       "date": "2019-02-02T23:27:00.000Z",
       "time": "1:00",
       "attendees": []
+    },
+    {
+      "id": 969,
+      "category": "education",
+      "title": "Aula 1",
+      "description": "Curso de alemão",
+      "location": "Nuhrenberg",
+      "date": "2020-09-10T23:47:00.000Z",
+      "time": "14:00",
+      "attendees": []
     }
   ]
 }
