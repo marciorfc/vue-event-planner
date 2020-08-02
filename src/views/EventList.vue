@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h1>Event Listing</h1>
-    <EventCard v-for="event in events" :key="event.id" :event="event" />
+    <h1>Events for {{ user.user.name }}</h1>
+    <EventCard v-for="event in event.events" :key="event.id" :event="event" />
     <template v-if="page != 1">
       <router-link
         :to="{
@@ -11,10 +11,9 @@
           }
         }"
         rel="prev"
-        >Prev Page
-      </router-link>
+      >Prev Page</router-link>
     </template>
-    <template v-if="this.eventsTotal > this.page * 3">
+    <template v-if="this.event.eventsTotal > this.page * this.perPage">
       <router-link
         :to="{
           name: 'event-list',
@@ -23,8 +22,7 @@
           }
         }"
         rel="next"
-        >Next Page
-      </router-link>
+      >Next Page</router-link>
     </template>
   </div>
 </template>
@@ -37,8 +35,10 @@ export default {
     EventCard
   },
   created() {
-    this.$store.dispatch('fetchEvents', {
-      perPage: 3,
+    this.perPage = 3 //Creating a variable here means it won't be reactive
+    //This way the  component has access to it
+    this.$store.dispatch('event/fetchEvents', {
+      perPage: this.perPage,
       page: this.page
     })
   },
@@ -46,7 +46,12 @@ export default {
     page() {
       return parseInt(this.$route.query.page) || 1
     },
-    ...mapState(['events', 'eventsTotal'])
+    ...mapState(['event', 'user'])
+  },
+  methods: {
+    hasNextPage() {
+      return this.event.eventsTotal > this.page * this.perPage
+    }
   }
 }
 </script>
