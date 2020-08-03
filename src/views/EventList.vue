@@ -36,7 +36,7 @@ export default {
   },
   created() {
     this.perPage = 3 //Creating a variable here means it won't be reactive
-    //This way the  component has access to it
+    //This way the  component has access to it"
     this.$store.dispatch('event/fetchEvents', {
       perPage: this.perPage,
       page: this.page

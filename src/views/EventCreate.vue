@@ -2,12 +2,6 @@
   <div>
     <h1>Create Event, {{ user.name }}</h1>
     <p>This event was created by {{ user.id }}</p>
-    <ul>
-      <li v-for="cat in categories" :key="cat">{{ cat }}</li>
-    </ul>
-    <p>Total of {{ catLength }} categories</p>
-    <p>Todo selected is {{ getEvent(3) }}</p>
-    <p>Using mapGetters now for id 2 {{ getEventById(2) }}</p>
     <form @submit.prevent="createEvent">
       <label>Select a category</label>
       <select v-model="event.category">
