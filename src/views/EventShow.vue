@@ -28,26 +28,21 @@
   </div>
 </template>
 <script>
-import { mapState } from 'vuex'
-import NProgress from 'nprogress'
-import store from '@/store'
-
 export default {
-  props: ['id'],
+  props: {
+    event: {
+      type: Object,
+      required: true
+    }
+  },
+  // eslint-disable-next-line no-unused-vars
   beforeRouteEnter(routeTo, routeFrom, next) {
-    NProgress.start()
-    store.dispatch('event/fetchEvent', routeTo.params.id).then(() => {
-      NProgress.done()
-      next()
-    })
+    console.log('EventShow.beforeRoutEnter')
+    next()
   },
-
   created() {
-    this.$store.dispatch('event/fetchEvent', this.id)
-  },
-  computed: mapState({
-    event: state => state.event.event
-  })
+    console.log('EventShow.created')
+  }
 }
 </script>
 <style scoped>

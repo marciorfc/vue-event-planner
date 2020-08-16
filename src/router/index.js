@@ -4,6 +4,8 @@ import VueRouter from 'vue-router'
 import EventCreate from '../views/EventCreate.vue'
 import EventList from '../views/EventList.vue'
 import EventShow from '../views/EventShow.vue'
+import NProgress from 'nprogress'
+import store from '@/store'
 
 Vue.use(VueRouter)
 
@@ -17,7 +19,14 @@ const routes = [
     path: '/event',
     name: 'event-show',
     component: EventShow,
-    props: true
+    props: true,
+    beforeEnter(routeTo, routeFrom, next) {
+      console.log('route def.beforeEnter')
+      store.dispatch('event/fetchEvent', routeTo.params.id).then(event => {
+        routeTo.params.event = event
+        next()
+      })
+    }
   },
   {
     path: '/event/create',
@@ -39,6 +48,18 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
+})
+
+router.beforeEach((routeTo, routeFrom, next) => {
+  console.log('router.beforeEach')
+  NProgress.start()
+  next()
+})
+
+// eslint-disable-next-line no-unused-vars
+router.afterEach(() => {
+  console.log('router.afterEach')
+  NProgress.done()
 })
 
 export default router
