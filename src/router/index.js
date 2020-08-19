@@ -13,7 +13,8 @@ const routes = [
   {
     path: '/',
     name: 'event-list',
-    component: EventList
+    component: EventList,
+    props: true
   },
   {
     path: '/event',
