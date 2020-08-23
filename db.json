@@ -281,6 +281,16 @@
       "date": "",
       "time": "",
       "attendees": []
+    },
+    {
+      "id": 209,
+      "category": "community",
+      "title": "yyyyy",
+      "description": "desc",
+      "location": "manaus",
+      "date": "2020-08-28T19:01:00.000Z",
+      "time": "19:00",
+      "attendees": []
     }
   ]
 }
